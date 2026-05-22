@@ -21,6 +21,7 @@
 		{ href: '/', icon: '\u25C9', label: 'Today' },
 		{ href: '/plan', icon: '\u25A4', label: 'Plan' },
 		{ href: '/trends', icon: '\u2197', label: 'Trends' },
+		{ href: '/analysis', icon: '\u25D0', label: 'Analysis' },
 		{ href: '/rtr', icon: '\u271A', label: 'Return' },
 		{ href: '/import', icon: '\u2913', label: 'Import' }
 	];

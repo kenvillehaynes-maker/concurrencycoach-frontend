@@ -24,7 +24,7 @@
 
 	let sleep = $state(7.5);
 	let soreness = $state(2);
-	let hrv = $state(0);
+	let hrv = $state(40);
 	let submitting = $state(false);
 
 	let ringFill = $state(0); // animated 0..1
@@ -73,7 +73,7 @@
 		try {
 			checkin = await api('/check-in', {
 				method: 'POST',
-				body: JSON.stringify({ sleep_hours: sleep, soreness, hrv_z: hrv })
+				body: JSON.stringify({ sleep_hours: sleep, soreness, hrv_raw: hrv })
 			});
 			animateRing(checkin.readiness_score);
 			await loadPrediction();
@@ -147,8 +147,8 @@
 				<input type="range" min="0" max="12" step="0.5" bind:value={sleep} style="margin: 8px 0 18px;" />
 				<label style="font-size: 0.82rem; color: var(--bone-dim); display: block;">Soreness <span class="mono-num" style="color: var(--bone); float: right;">{soreness}/10</span></label>
 				<input type="range" min="0" max="10" step="1" bind:value={soreness} style="margin: 8px 0 18px;" />
-				<label style="font-size: 0.82rem; color: var(--bone-dim); display: block;">HRV z-score <span class="mono-num" style="color: var(--bone); float: right;">{hrv}</span></label>
-				<input type="range" min="-3" max="3" step="0.1" bind:value={hrv} style="margin: 8px 0 18px;" />
+				<label style="font-size: 0.82rem; color: var(--bone-dim); display: block;">HRV (ms) <span class="mono-num" style="color: var(--bone); float: right;">{hrv}</span></label>
+				<input type="range" min="10" max="150" step="1" bind:value={hrv} style="margin: 8px 0 18px;" />
 				<button onclick={submitCheckin} disabled={submitting}>{submitting ? 'Saving...' : 'Submit check-in'}</button>
 			</div>
 		{/if}
