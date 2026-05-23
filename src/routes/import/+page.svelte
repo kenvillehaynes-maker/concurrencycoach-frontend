@@ -104,6 +104,7 @@
 			}
 			const payload = {
 				activity: mapActivity(w.activity_type),
+						distance_km: w.distance_km,
 				started_at: w.start_iso,
 				duration_minutes: Math.round(w.duration_minutes * 10) / 10,
 				intensity: estimateIntensity(w.energy_kcal, w.duration_minutes),
